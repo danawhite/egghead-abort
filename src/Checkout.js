@@ -50,27 +50,41 @@ export default class Checkout extends React.Component {
   };
 
   checkout = () => {
-    this.setState({ status: "processing" });
+    console.log(signal.aborted);
+    if (signal.aborted) {
+      console.log("abortedd");
+      return Promise.reject(
+        new DOMException("Transaction Canceled", "AbortError")
+      );
+      // this.setState({ status: "canceled" });
+    }
     return new Promise((resolve, reject) => {
-      console.log("Processing");
-      setTimeout(() => resolve("Done"), 5000);
+      console.log("processing");
+      this.setState({ status: "processing" });
+
+      setTimeout(() => {
+        resolve("Done");
+      }, 5000);
 
       signal.addEventListener("abort", () => {
+        console.log("aborted all da");
         reject(new DOMException("Transaction Canceled", "AbortError"));
-        this.setState({ status: 'canceled' })
-        console.log("aborted now!!");
+        console.log("aborted noww!!");
+        this.setState({ status: "canceled" });
       });
     });
   };
 
   handleCheckout = () => {
-    this.checkout().then(result =>
-      this.setState({ status: "success", processing: false })
-    );
+    // this.setState({ status: "processing" });
+    this.checkout().then(result => {
+      console.log(result);
+      this.setState({ status: "success" });
+    });
   };
 
   handleCancel = () => {
-    console.log('handleCancel');
+    // console.log('handleCancel');
     abortController.abort();
   };
 
