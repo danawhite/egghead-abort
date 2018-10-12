@@ -3,6 +3,7 @@ import React from "react";
 import { Sentry } from "react-activity";
 import Icon from "react-icons-kit";
 import { ic_block } from "react-icons-kit/md/ic_block";
+import { checkCircle } from "react-icons-kit/fa/checkCircle";
 
 import { signal, abortController } from "./abort-controller";
 
@@ -53,7 +54,14 @@ const Cancelled = () => {
   );
 };
 
-const Success = () => <div>Success</div>;
+const Success = () => (
+  <div style={{ flex: 1, flexDirection: "column" }}>
+    <div style={{ color: "green" }}>
+      <Icon icon={checkCircle} size={64} />
+    </div>
+    <h2>Transaction Successful</h2>
+  </div>
+);
 
 const Error = () => <div>Error</div>;
 
@@ -69,18 +77,12 @@ export default class TransactionStatus extends React.Component {
   }
 
   getViewForCurrentStatus(status) {
-    console.log(`Current status: ${status}`);
-    // if(status === 'processing') {
-    //   return <Processing/>
-    // }
     const views = {
       processing: () => <Processing onCancel={this.cancelTransaction} />,
       success: () => <Success />,
       error: () => <Error />,
       canceled: () => <Cancelled />
     };
-
-    // console.log(views[status]);
 
     return views[status]();
   }
@@ -94,7 +96,6 @@ export default class TransactionStatus extends React.Component {
   };
 
   render() {
-    console.log(`render`, this.getViewForCurrentStatus(this.props.status));
     return (
       <div style={styles.container}>
         {this.getViewForCurrentStatus(this.props.status)}
