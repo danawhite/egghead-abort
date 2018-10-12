@@ -49,7 +49,7 @@ const Cancelled = () => {
       <div style={{ color: "red" }}>
         <Icon icon={ic_block} size={64} />
       </div>
-      <h5>Transaction Canceled</h5>
+      <h2>Transaction Canceled</h2>
     </div>
   );
 };
