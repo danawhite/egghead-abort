@@ -30,7 +30,7 @@ class Processing extends React.Component {
   render() {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <Sentry size={100} />
+        <Sentry size={64} />
         Processing
         <button
           style={styles.cancelButton}
