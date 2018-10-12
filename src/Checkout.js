@@ -57,6 +57,7 @@ export default class Checkout extends React.Component {
 
       signal.addEventListener("abort", () => {
         reject(new DOMException("Transaction Canceled", "AbortError"));
+        this.setState({ status: 'canceled' })
         console.log("aborted now!!");
       });
     });
@@ -69,6 +70,7 @@ export default class Checkout extends React.Component {
   };
 
   handleCancel = () => {
+    console.log('handleCancel');
     abortController.abort();
   };
 
@@ -80,7 +82,7 @@ export default class Checkout extends React.Component {
         ) : (
           <TransactionStatus
             status={this.state.status}
-            onCancel={this.handleCancel}
+            onCancelTransaction={this.handleCancel}
           />
         )}
       </div>

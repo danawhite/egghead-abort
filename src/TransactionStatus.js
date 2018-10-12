@@ -4,8 +4,6 @@ import { Sentry } from "react-activity";
 
 import { signal, abortController } from "./abort-controller";
 
-// import Cancelled from "./status/Cancelled";
-
 const styles = {
   container: {
     display: "flex",
@@ -24,19 +22,33 @@ const styles = {
   }
 };
 
-const Processing = () => (
-  <div style={{ display: "flex", flexDirection: "column" }}>
-    <Sentry size={100} />
-    Processing
-    <button style={styles.cancelButton} onClick={() => this.props.onCancel()}>
-      Cancel
-    </button>
-  </div>
-);
+class Processing extends React.Component {
+  render() {
+    console.log(this, this.props)
+    return(
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Sentry size={100} />
+        Processing
+        <button style={styles.cancelButton}
+              onClick={() => this.props.onCancel()}>
+              Cancel
+        </button>
+      </div>
+    )
+  }
+}
 
 const Cancelled = () => {
   return <div>Cancelled</div>;
 };
+
+const Success = () => (
+  <div>Success</div>
+)
+
+const Error = () => (
+  <div>Error</div>
+)
 
 export default class TransactionStatus extends React.Component {
   state = {
@@ -56,15 +68,15 @@ export default class TransactionStatus extends React.Component {
   }
 
   getViewForCurrentStatus(status) {
-    console.log(`Current status: ${status}`);
+    // console.log(`Current status: ${status}`);
     // if(status === 'processing') {
     //   return <Processing/>
     // }
     const views = {
-      processing: () => <Cancelled />
-      // success: () => <Success />,
-      // error: () => <Error />,
-      // cancelled: () => <Cancelled />
+      processing: () => <Processing onCancel={this.cancelTransaction} />,
+      success: () => <Success />,
+      error: () => <Error />,
+      canceled: () => <Cancelled />
     };
 
     // console.log(views[status]);
@@ -72,12 +84,16 @@ export default class TransactionStatus extends React.Component {
     return views[status]();
   }
 
-  abort() {
+  cancelTransaction = () => {
+    this.props.onCancelTransaction();
+  }
+
+  abort = () => {
     abortController.abort();
   }
 
   render() {
-    console.log(`render`, this.getViewForCurrentStatus(this.props.status));
+    // console.log(`render`, this.getViewForCurrentStatus(this.props.status));
     return (
       <div style={styles.container}>
         {this.getViewForCurrentStatus(this.props.status)}
