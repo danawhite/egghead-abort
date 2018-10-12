@@ -28,7 +28,6 @@ const styles = {
 
 class Processing extends React.Component {
   render() {
-    console.log(this, this.props);
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Sentry size={100} />
