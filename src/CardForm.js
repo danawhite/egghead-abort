@@ -69,10 +69,30 @@ export default class CardForm extends React.Component {
               style={styles.input}
               type="number"
               placeholder="4242 4242 4242 4242"
+              onFocus={() => this.setState({ activeInput: "number" })}
+              onChange={event => this.setState({ number: event.target.value })}
             />
-            <input style={styles.input} type="text" placeholder="John Doe" />
-            <input style={styles.input} type="number" placeholder="MM/YY" />
-            <input style={styles.input} type="number" placeholder="CVC" />
+            <input
+              style={styles.input}
+              type="text"
+              placeholder="John Doe"
+              onFocus={() => this.setState({ activeInput: "name" })}
+              onChange={event => this.setState({ name: event.target.value })}
+            />
+            <input
+              style={styles.input}
+              type="number"
+              placeholder="MM/YY"
+              onFocus={() => this.setState({ activeInput: "expiry" })}
+              onChange={event => this.setState({ expiry: event.target.value })}
+            />
+            <input
+              style={styles.input}
+              type="number"
+              placeholder="CVC"
+              onFocus={() => this.setState({ activeInput: "cvc" })}
+              onChange={event => this.setState({ cvc: event.target.value })}
+            />
           </div>
           <div>
             <button style={styles.cta} onClick={this.initiateTransaction}>
