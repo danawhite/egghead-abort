@@ -9,7 +9,7 @@ const styles = {
     flexDirection: "row"
   },
   cardContainer: {
-    paddingTop: 20
+    paddingTop: 15
   },
   contentContainer: {
     flex: 1,
@@ -23,16 +23,19 @@ const styles = {
   },
   input: {
     flex: 1,
-    height: 24,
-    borderRadius: 6,
-    margin: 10
+    height: 32,
+    borderRadius: 10,
+    margin: 5,
+    fontSize: 14,
+    paddingLeft: 10
   },
   cta: {
     flex: 1,
-    backgroundColor: "blue",
+    backgroundColor: "#3498db",
     color: "snow",
     fontWeight: "bold",
-    height: 42,
+    fontSize: 18,
+    height: 48,
     width: "70%",
     borderRadius: 9
   }
