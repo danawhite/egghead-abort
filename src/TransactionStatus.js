@@ -43,45 +43,49 @@ class Processing extends React.Component {
   }
 }
 
-const Cancelled = () => {
-  return (
-    <div style={{ flex: 1, flexDirection: "column" }}>
-      <div style={{ color: "red" }}>
-        <Icon icon={ic_block} size={64} />
+class Cancelled extends React.Component {
+  render() {
+    return (
+      <div style={{ flex: 1, flexDirection: "column" }}>
+        <div style={{ color: "red" }}>
+          <Icon icon={ic_block} size={64} />
+        </div>
+        <h2>Transaction Canceled</h2>
       </div>
-      <h2>Transaction Canceled</h2>
-    </div>
-  );
-};
+    );
+  }
+}
 
-const Success = () => (
-  <div style={{ flex: 1, flexDirection: "column" }}>
-    <div style={{ color: "green" }}>
-      <Icon icon={checkCircle} size={64} />
-    </div>
-    <h2>Transaction Successful</h2>
-  </div>
-);
+class Success extends React.Component {
+  render() {
+    return (
+      <div style={{ flex: 1, flexDirection: "column" }}>
+        <div style={{ color: "green" }}>
+          <Icon icon={checkCircle} size={64} />
+        </div>
+        <h2>Transaction Successful</h2>
+      </div>
+    );
+  }
+}
 
-const Error = () => (
-  <div style={{ flex: 1, flexDirection: "column" }}>
-    <div style={{ color: "red" }}>
-      <Icon icon={close} size={64} />
-    </div>
-    <h2>Error!!</h2>
-  </div>
-);
+class Error extends React.Component {
+  render() {
+    return (
+      <div style={{ flex: 1, flexDirection: "column" }}>
+        <div style={{ color: "red" }}>
+          <Icon icon={close} size={64} />
+        </div>
+        <h2>Error!!</h2>
+      </div>
+    );
+  }
+}
 
 export default class TransactionStatus extends React.Component {
   state = {
     status: this.props.status
   };
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.status !== this.props.status) {
-      console.log(`Exactl! ${this.props.status}`);
-    }
-  }
 
   getViewForCurrentStatus(status) {
     const views = {
@@ -96,10 +100,6 @@ export default class TransactionStatus extends React.Component {
 
   cancelTransaction = () => {
     this.props.onCancelTransaction();
-  };
-
-  abort = () => {
-    abortController.abort();
   };
 
   render() {

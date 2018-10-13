@@ -86,7 +86,7 @@ export default class CardForm extends React.Component {
             <input
               style={styles.input}
               type="number"
-              maxlength="5"
+              maxLength="5"
               placeholder="MM/YY"
               onFocus={() => this.setState({ activeInput: "expiry" })}
               onChange={event => this.setState({ expiry: event.target.value })}
@@ -94,7 +94,7 @@ export default class CardForm extends React.Component {
             <input
               style={styles.input}
               type="number"
-              maxlength="3"
+              maxLength="3"
               placeholder="CVC"
               onFocus={() => this.setState({ activeInput: "cvc" })}
               onChange={event => this.setState({ cvc: event.target.value })}

@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Checkout from "./Checkout";
+import Checkout from './Checkout';
 
-import "./styles.css";
-import "react-activity/dist/react-activity.css";
+import './styles.css';
+import 'react-activity/dist/react-activity.css';
 
 function App() {
   return (
@@ -15,5 +15,5 @@ function App() {
   );
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
