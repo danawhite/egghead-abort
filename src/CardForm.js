@@ -1,24 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import Cards from "react-credit-cards";
+import Cards from 'react-credit-cards';
 
 const styles = {
   container: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   cardContainer: {
     paddingTop: 15
   },
   contentContainer: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   inputContainer: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     paddingTop: 10
   },
   input: {
@@ -31,23 +31,23 @@ const styles = {
   },
   cta: {
     flex: 1,
-    backgroundColor: "#3498db",
-    color: "snow",
-    fontWeight: "bold",
+    backgroundColor: '#3498db',
+    color: 'snow',
+    fontWeight: 'bold',
     fontSize: 18,
     height: 48,
-    width: "70%",
+    width: '70%',
     borderRadius: 9
   }
 };
 
 export default class CardForm extends React.Component {
   state = {
-    number: "",
-    name: "",
-    expiry: "",
-    cvc: "",
-    activeInput: "number"
+    number: '',
+    name: '',
+    expiry: '',
+    cvc: '',
+    activeInput: 'number'
   };
 
   initiateTransaction = () => {
@@ -73,14 +73,14 @@ export default class CardForm extends React.Component {
               type="number"
               maxLength={16}
               placeholder="4242 4242 4242 4242"
-              onFocus={() => this.setState({ activeInput: "number" })}
+              onFocus={() => this.setState({ activeInput: 'number' })}
               onChange={event => this.setState({ number: event.target.value })}
             />
             <input
               style={styles.input}
               type="text"
               placeholder="John Doe"
-              onFocus={() => this.setState({ activeInput: "name" })}
+              onFocus={() => this.setState({ activeInput: 'name' })}
               onChange={event => this.setState({ name: event.target.value })}
             />
             <input
@@ -88,7 +88,7 @@ export default class CardForm extends React.Component {
               type="number"
               maxLength="5"
               placeholder="MM/YY"
-              onFocus={() => this.setState({ activeInput: "expiry" })}
+              onFocus={() => this.setState({ activeInput: 'expiry' })}
               onChange={event => this.setState({ expiry: event.target.value })}
             />
             <input
@@ -96,7 +96,7 @@ export default class CardForm extends React.Component {
               type="number"
               maxLength="3"
               placeholder="CVC"
-              onFocus={() => this.setState({ activeInput: "cvc" })}
+              onFocus={() => this.setState({ activeInput: 'cvc' })}
               onChange={event => this.setState({ cvc: event.target.value })}
             />
           </div>
