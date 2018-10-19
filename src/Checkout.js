@@ -1,30 +1,30 @@
-import React from "react";
+import React from 'react';
 
-import Cards from "react-credit-cards";
+import Cards from 'react-credit-cards';
 
-import { signal, abortController } from "./abort-controller";
+import { signal, abortController } from './abort-controller';
 
-import CardForm from "./CardForm";
-import TransactionStatus from "./TransactionStatus";
+import CardForm from './CardForm';
+import TransactionStatus from './TransactionStatus';
 
-import "react-credit-cards/es/styles-compiled.css";
+import 'react-credit-cards/es/styles-compiled.css';
 
 const styles = {
   container: {
-    display: "flex",
-    flexDirection: "row"
+    display: 'flex',
+    flexDirection: 'row'
   },
   cardContainer: {
     paddingTop: 20
   },
   contentContainer: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: 'column'
   },
   inputContainer: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     paddingTop: 10
   },
   input: {
@@ -35,44 +35,50 @@ const styles = {
   },
   cta: {
     flex: 1,
-    backgroundColor: "blue",
-    color: "snow",
-    fontWeight: "bold",
+    backgroundColor: 'blue',
+    color: 'snow',
+    fontWeight: 'bold',
     height: 42,
-    width: "70%",
+    width: '70%',
     borderRadius: 9
   }
 };
 
 export default class Checkout extends React.Component {
   state = {
-    status: "idle"
+    status: 'idle'
   };
 
   checkout = () => {
     if (signal.aborted) {
       return Promise.reject(
-        new DOMException("Transaction Canceled", "AbortError")
+        new DOMException('Transaction Canceled', 'AbortError')
       );
     }
     return new Promise((resolve, reject) => {
-      this.setState({ status: "processing" });
+      this.setState({ status: 'processing' });
 
       setTimeout(() => {
-        resolve("Done");
+        resolve('Done');
       }, 5000);
 
-      signal.addEventListener("abort", () => {
-        reject(new DOMException("Transaction Canceled", "AbortError"));
-        this.setState({ status: "canceled" });
+      signal.addEventListener('abort', () => {
+        reject(new DOMException('Transaction Canceled', 'AbortError'));
       });
     });
   };
 
   handleCheckout = () => {
-    this.checkout().then(result => {
-      this.setState({ status: "success" });
-    });
+    this.checkout()
+      .then(result => {
+        this.setState({ status: 'success' });
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') {
+          console.log('abortions');
+          this.setState({ status: 'canceled' });
+        }
+      });
   };
 
   handleCancel = () => {
@@ -82,7 +88,7 @@ export default class Checkout extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        {this.state.status === "idle" ? (
+        {this.state.status === 'idle' ? (
           <CardForm onCheckout={this.handleCheckout} />
         ) : (
           <TransactionStatus
