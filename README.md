@@ -1,2 +1,1 @@
-# egghead-abort
-Code for upcoming Egghead lesson 
+# Cancel a Primise Using AbortController
