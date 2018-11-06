@@ -1,1 +1,1 @@
-# Cancel a Primise Using AbortController
+# Cancel a Promise Using AbortController
